@@ -1,11 +1,6 @@
 const https = require("https");
 urlStr =
-"https://tiki.vn/dien-thoai-vsmart-live-64gb-6gb-hang-chinh-hang-p27927726.html?src=category-page-1789&2hi=0&_lc=Vk4wMzkwMjQwMDg%3D"
-
-str = "Điện thoại Vsmart Live (64GB/6GB) - Hàng"
-i = str.indexOf(" -");
-str = str.substring(1, i);
-console.log(str);
+"https://tiki.vn/dien-thoai-iphone-6-32gb-vn-a-vang-dong-hang-chinh-hang-p684632.html?src=category-page-1789&2hi=0&_lc=Vk4wMzkwMjQwMDg%3D"
 
 https
   .get(urlStr, res => {
@@ -23,21 +18,25 @@ https
       data += chunk;
       if (data.indexOf(ogtitle) != -1) {
         name = parseString(data, ogtitle, ogend);
-        console.log('{"name": "' + name + '",');
+        // console.log('{"name": "' + name + '",');
+        console.log(name);
         result.name = name;
       }
       if (data.indexOf(ogdes) != -1) {
         des = parseString(data, ogdes, ogend);
-        console.log('"description": "' + des + '",');
+        // console.log('"description": "' + des + '",');
+        console.log(des);
         result.des = des;
       }
       if (data.indexOf(ogurl, ogend) != -1) {
         image = parseString(data, ogurl, ogend);
-        console.log('"image": "' + image + '",');
+        // console.log('"image": "' + image + '",');
+        console.log(image);
       }
       if (data.indexOf(costs) != -1) {
         price = parseString(data, costs, coste);
-        console.log('"price": "' + price + '", "brand": ""}');
+        // console.log('"price": "' + price + '", "brand": ""}');
+        console.log(price);
         result.price = price;
       }
       data = "";
@@ -66,13 +65,3 @@ function parseString(data, startStr, endStr) {
 // if (data.indexOf(costs) != -1){
 //     cost = parseString(data, costs, coste);
 // }
-
-v = {
-  "name": "Điện Thoại iPhone 7 Plus 128GB - Hàng Nhập Khẩu Chính Hãng",
-  description:
-    "Thiết kế siêu mỏng iPhone 7 Plus 128GB với kích thước  158.2 x 77.9 x 7.3 mm mỏng nhẹ và thiết kế tương tự như bộ đôi...",
-  image:
-    "https://salt.tikicdn.com/cache/200x200/ts/product/b8/07/c0/844fa4273cec4570f9128474c69066f7.jpg",
-  price: "11.490.000đ",
-  brand: ""
-};
